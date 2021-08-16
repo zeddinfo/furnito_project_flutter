@@ -67,7 +67,7 @@ class _MainPageState extends State<MainPage> {
                     icon: Container(
                       margin: EdgeInsets.only(top: 10, left: 50),
                       child: Icon(
-                        Icons.history,
+                        Icons.favorite,
                         color: currentindex == 2 ? primaryColor : subTitle,
                       ),
                     ),
@@ -97,7 +97,7 @@ class _MainPageState extends State<MainPage> {
         case 2:
           return HistoryPage();
           break;
-        case 4:
+        case 3:
           return AccountPage();
           break;
         default:

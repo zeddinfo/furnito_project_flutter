@@ -41,45 +41,48 @@ class HomePage extends StatelessWidget {
     }
 
     Widget categories() {
-      return Container(
-        padding: EdgeInsets.all(10),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CategoriesCard(
-                title: 'CHAIR',
-                icon: 'assets/images/chair_new.png',
-                color1: Colors.white,
-                width: 40,
-                top: -25,
-                left: 20,
-                right: 20,
-                color2: Colors.brown.shade400),
-            SizedBox(
-              width: 10,
-            ),
-            CategoriesCard(
-                title: 'COUCH',
-                icon: 'assets/images/couch.png',
-                color1: Colors.white,
-                width: 50,
-                top: -20,
-                left: 20,
-                right: 20,
-                color2: Colors.blue.shade300),
-            SizedBox(
-              width: 10,
-            ),
-            CategoriesCard(
-                title: 'TABLE',
-                icon: 'assets/images/table.png',
-                color1: Colors.white,
-                width: 50,
-                top: -20,
-                left: 20,
-                right: 20,
-                color2: Colors.yellow.shade200)
-          ],
+      return SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Container(
+          padding: EdgeInsets.all(10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CategoriesCard(
+                  title: 'CHAIR',
+                  icon: 'assets/images/chair_new.png',
+                  color1: Colors.white,
+                  width: 40,
+                  top: -25,
+                  left: 20,
+                  right: 20,
+                  color2: Colors.brown.shade400),
+              SizedBox(
+                width: 10,
+              ),
+              CategoriesCard(
+                  title: 'COUCH',
+                  icon: 'assets/images/couch.png',
+                  color1: Colors.white,
+                  width: 50,
+                  top: -20,
+                  left: 20,
+                  right: 20,
+                  color2: Colors.blue.shade300),
+              SizedBox(
+                width: 10,
+              ),
+              CategoriesCard(
+                  title: 'TABLE',
+                  icon: 'assets/images/table.png',
+                  color1: Colors.white,
+                  width: 50,
+                  top: -20,
+                  left: 20,
+                  right: 20,
+                  color2: Colors.yellow.shade200)
+            ],
+          ),
         ),
       );
     }
