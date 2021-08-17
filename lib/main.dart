@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:furnito_chart/pages/cart_page.dart';
 import 'package:furnito_chart/pages/detail_chat.dart';
 import 'package:furnito_chart/pages/home/main_page.dart';
+import 'package:furnito_chart/pages/product_page.dart';
 import 'package:furnito_chart/pages/sign_in_page.dart';
 import 'package:furnito_chart/pages/splash_screen.dart';
 
@@ -22,6 +24,8 @@ class MyApp extends StatelessWidget {
         '/sign-in': (context) => SignInPage(),
         '/home': (context) => MainPage(),
         '/detail-chat': (context) => DetailChat(),
+        '/product': (context) => ProductPage(),
+        '/cart': (context) => CartPage(),
       },
     );
   }

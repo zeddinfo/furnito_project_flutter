@@ -1,11 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:furnito_chart/theme.dart';
 import 'package:furnito_chart/widgets/categories_card.dart';
 import 'package:furnito_chart/widgets/popular_product.dart';
 import 'package:furnito_chart/widgets/whistlist_card.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  DateTime currentBackPressTime = DateTime.now();
+
+  Future<bool> onWillPop() {
+    DateTime now = DateTime.now();
+    if (currentBackPressTime == null ||
+        now.difference(currentBackPressTime) > Duration(seconds: 2)) {
+      currentBackPressTime = now;
+      Fluttertoast.showToast(msg: 'Tekan sekali lagi untuk keluar aplikasi');
+      print('masuk sini');
+      return Future.value(false);
+    }
+    print('masuk sisni');
+    return Future.value(true);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +37,8 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
         title: Text(
           'FURNITO',
-          style: primaryTextStyle.copyWith(fontSize: 15, fontWeight: bold),
+          style: primaryTextStyle.copyWith(
+              fontSize: 20, letterSpacing: 10, fontWeight: bold),
         ),
         automaticallyImplyLeading: false,
         actions: <Widget>[
@@ -30,7 +52,7 @@ class HomePage extends StatelessWidget {
                 ),
                 SizedBox(width: 8),
                 Icon(
-                  Icons.shop_2_outlined,
+                  Icons.shopping_bag,
                   color: primaryColor,
                 )
               ],
@@ -41,8 +63,9 @@ class HomePage extends StatelessWidget {
     }
 
     Widget categories() {
-      return SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
+      var sizeScreen = MediaQuery.of(context).size;
+
+      return Center(
         child: Container(
           padding: EdgeInsets.all(10),
           child: Row(
@@ -88,32 +111,34 @@ class HomePage extends StatelessWidget {
     }
 
     Widget productList() {
-      return Container(
-        margin: EdgeInsets.only(top: 20),
-        child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: Row(
-              children: [
-                WhistlistCard(
-                    title: 'hello',
-                    description: 'hello',
-                    star: '2.1',
-                    harga: 20000),
-                SizedBox(width: 15),
-                WhistlistCard(
-                    title: 'hello',
-                    description: 'hello',
-                    star: '2.1',
-                    harga: 20000),
-                SizedBox(width: 15),
-                WhistlistCard(
-                    title: 'hello',
-                    description: 'hello',
-                    star: '2.1',
-                    harga: 20000)
-              ],
+      return GestureDetector(
+        child: Container(
+          margin: EdgeInsets.only(top: 20),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Row(
+                children: [
+                  WhistlistCard(
+                      title: 'hello',
+                      description: 'hello',
+                      star: '2.1',
+                      harga: 20000),
+                  SizedBox(width: 15),
+                  WhistlistCard(
+                      title: 'hello',
+                      description: 'hello',
+                      star: '2.1',
+                      harga: 20000),
+                  SizedBox(width: 15),
+                  WhistlistCard(
+                      title: 'hello',
+                      description: 'hello',
+                      star: '2.1',
+                      harga: 20000)
+                ],
+              ),
             ),
           ),
         ),
@@ -190,13 +215,16 @@ class HomePage extends StatelessWidget {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [Colors.white, Colors.grey.shade100])),
-          child: ListView(
-            children: [
-              SizedBox(height: 20),
-              categories(),
-              productList(),
-              popularProducts(),
-            ],
+          child: WillPopScope(
+            onWillPop: onWillPop,
+            child: ListView(
+              children: [
+                SizedBox(height: 20),
+                categories(),
+                productList(),
+                popularProducts(),
+              ],
+            ),
           ),
         ),
       ),

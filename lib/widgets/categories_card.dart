@@ -43,7 +43,7 @@ class CategoriesCard extends StatelessWidget {
                   colors: [color1, color2]),
             ),
             alignment: Alignment.centerRight,
-            width: 110,
+            width: 130,
             height: 110,
             child: Align(
               alignment: Alignment.center,
