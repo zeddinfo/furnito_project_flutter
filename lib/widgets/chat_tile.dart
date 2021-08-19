@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:furnito_chart/theme.dart';
 
 class ChatTile extends StatelessWidget {
-  const ChatTile({Key? key}) : super(key: key);
+  const ChatTile({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

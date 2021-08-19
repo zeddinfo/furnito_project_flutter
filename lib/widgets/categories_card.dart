@@ -11,14 +11,14 @@ class CategoriesCard extends StatelessWidget {
   final double left;
   final double right;
   CategoriesCard(
-      {required this.title,
-      required this.icon,
-      required this.color1,
-      required this.color2,
-      required this.width,
-      required this.top,
-      required this.right,
-      required this.left});
+      {this.title,
+      this.icon,
+      this.color1,
+      this.color2,
+      this.width,
+      this.top,
+      this.right,
+      this.left});
 
   @override
   Widget build(BuildContext context) {

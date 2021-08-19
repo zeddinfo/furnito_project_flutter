@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:furnito_chart/Models/asset_model.dart';
+import 'package:furnito_chart/providers/asset_provider.dart';
 import 'package:furnito_chart/theme.dart';
 import 'package:furnito_chart/widgets/categories_card.dart';
 import 'package:furnito_chart/widgets/popular_product.dart';
 import 'package:furnito_chart/widgets/whistlist_card.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({Key key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -28,8 +31,19 @@ class _HomePageState extends State<HomePage> {
     return Future.value(true);
   }
 
+  getInit() async {
+    await Provider.of<AssetProvider>(context, listen: false).getAssets();
+  }
+
+  @override
+  void initState() {
+    getInit();
+  }
+
   @override
   Widget build(BuildContext context) {
+    AssetProvider assetProvider = Provider.of<AssetProvider>(context);
+
     Widget header() {
       return AppBar(
         backgroundColor: Colors.white,
@@ -119,25 +133,30 @@ class _HomePageState extends State<HomePage> {
             child: Padding(
               padding: const EdgeInsets.all(10),
               child: Row(
-                children: [
-                  WhistlistCard(
-                      title: 'hello',
-                      description: 'hello',
-                      star: '2.1',
-                      harga: 20000),
-                  SizedBox(width: 15),
-                  WhistlistCard(
-                      title: 'hello',
-                      description: 'hello',
-                      star: '2.1',
-                      harga: 20000),
-                  SizedBox(width: 15),
-                  WhistlistCard(
-                      title: 'hello',
-                      description: 'hello',
-                      star: '2.1',
-                      harga: 20000)
-                ],
+                children: assetProvider.assets
+                    .map(
+                      (asset) => WhistlistCard(asset: asset),
+                    )
+                    .toList(),
+                // children: [
+                //   WhistlistCard(
+                //       title: 'hello',
+                //       description: 'hello',
+                //       star: '2.1',
+                //       harga: 20000),
+                //   SizedBox(width: 15),
+                //   WhistlistCard(
+                //       title: 'hello',
+                //       description: 'hello',
+                //       star: '2.1',
+                //       harga: 20000),
+                //   SizedBox(width: 15),
+                //   WhistlistCard(
+                //       title: 'hello',
+                //       description: 'hello',
+                //       star: '2.1',
+                //       harga: 20000)
+                // ],
               ),
             ),
           ),
@@ -217,14 +236,20 @@ class _HomePageState extends State<HomePage> {
                   colors: [Colors.white, Colors.grey.shade100])),
           child: WillPopScope(
             onWillPop: onWillPop,
-            child: ListView(
-              children: [
-                SizedBox(height: 20),
-                categories(),
-                productList(),
-                popularProducts(),
-              ],
-            ),
+            child: assetProvider.assets.length == 0
+                ? Center(
+                    child: Text(
+                    'Sedang memuat data',
+                    style: primaryTextStyle,
+                  ))
+                : ListView(
+                    children: [
+                      SizedBox(height: 20),
+                      categories(),
+                      productList(),
+                      popularProducts(),
+                    ],
+                  ),
           ),
         ),
       ),

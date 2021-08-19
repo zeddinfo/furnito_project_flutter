@@ -3,9 +3,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:furnito_chart/Models/user_session.dart';
 import 'package:furnito_chart/helpers/session.dart';
+import 'package:furnito_chart/providers/asset_provider.dart';
+import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({Key key}) : super(key: key);
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -25,9 +27,14 @@ class _SplashScreenState extends State<SplashScreen> {
     }
   }
 
+  getInit() async {
+    await Provider.of<AssetProvider>(context, listen: false).getAssets();
+  }
+
   @override
   void initState() {
     loadConfig();
+
     Timer(
       Duration(seconds: 3),
       () => temp != null

@@ -8,7 +8,7 @@ class ChatBubble extends StatelessWidget {
   final String text;
   final bool isSender;
 
-  ChatBubble({required this.isSender, required this.text});
+  ChatBubble({this.isSender, this.text});
 
   @override
   Widget build(BuildContext context) {

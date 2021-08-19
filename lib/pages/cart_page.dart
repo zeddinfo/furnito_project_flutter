@@ -3,7 +3,7 @@ import 'package:furnito_chart/theme.dart';
 import 'package:furnito_chart/widgets/cart_card.dart';
 
 class CartPage extends StatelessWidget {
-  const CartPage({Key? key}) : super(key: key);
+  const CartPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

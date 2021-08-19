@@ -6,7 +6,7 @@ import 'package:furnito_chart/pages/home/home_page.dart';
 import 'package:furnito_chart/theme.dart';
 
 class MainPage extends StatefulWidget {
-  const MainPage({Key? key}) : super(key: key);
+  const MainPage({Key key}) : super(key: key);
 
   @override
   State<MainPage> createState() => _MainPageState();

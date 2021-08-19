@@ -3,7 +3,7 @@ import 'package:furnito_chart/theme.dart';
 import 'package:furnito_chart/widgets/wishlist_card.dart';
 
 class HistoryPage extends StatelessWidget {
-  const HistoryPage({Key? key}) : super(key: key);
+  const HistoryPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

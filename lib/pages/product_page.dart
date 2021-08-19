@@ -1,8 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:furnito_chart/Models/asset_model.dart';
 import 'package:furnito_chart/theme.dart';
 
 class ProductPage extends StatefulWidget {
+  final AssetModel asset;
+  ProductPage(this.asset);
   @override
   State<ProductPage> createState() => _ProductPageState();
 }

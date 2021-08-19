@@ -1,13 +1,34 @@
 class UserSessionModel {
   String token;
   SessionData dataUser;
-  UserSessionModel({this.token = "", required this.dataUser});
+  UserSessionModel({this.token = "", this.dataUser});
 
   Map toJson() => {'token': token, 'dataUser': dataUser};
 
   @override
   String toString() {
     return toJson().toString();
+  }
+}
+
+class UserModel {
+  String token;
+  String name;
+  String email;
+  String username;
+
+  UserModel(
+      {this.token = "", this.name = "", this.email = "", this.username = ""});
+
+  UserModel.fromJson(Map<String, dynamic> json) {
+    token = json['token'];
+    name = json['data']['name'];
+    email = json['data']['email'];
+    username = json['data']['username'];
+  }
+
+  Map<String, dynamic> toJson() {
+    return {'token': token};
   }
 }
 
@@ -19,11 +40,11 @@ class SessionData {
   String urlPhoto;
 
   SessionData(
-      {required this.nama,
-      required this.username,
-      required this.email,
-      required this.aktif,
-      required this.urlPhoto});
+      {this.nama = "",
+      this.username = "",
+      this.email = "",
+      this.aktif = "",
+      this.urlPhoto = ""});
 
   Map toJson() => {
         'nama': nama,

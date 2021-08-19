@@ -16,7 +16,7 @@ class Session {
     dynamic result;
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      String? temp = prefs.getString(key);
+      String temp = prefs.getString(key);
       if (temp != null) {
         result = jsonDecode(temp);
       }

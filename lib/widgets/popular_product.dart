@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:furnito_chart/theme.dart';
 
 class PopularProduct extends StatelessWidget {
-  const PopularProduct({Key? key}) : super(key: key);
+  const PopularProduct({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -57,7 +57,7 @@ class ApiHelpers {
     };
     switch (response.statusCode) {
       case 200:
-        result = json.decode(response.body.toString());
+        result = json.decode(response.body);
         break;
       case 400:
         result = {'Status': 'E', 'Message': 'Error : Bad Request.'};

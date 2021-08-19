@@ -3,7 +3,7 @@ import 'package:furnito_chart/theme.dart';
 import 'package:furnito_chart/widgets/chat_bubble.dart';
 
 class DetailChat extends StatelessWidget {
-  const DetailChat({Key? key}) : super(key: key);
+  const DetailChat({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
